@@ -45,12 +45,12 @@ class Base64String(String):
     """
 
     def __init__(
-            self,
-            *args: Any,
-            length: Optional[int] = None,
-            min_encoded_length: Optional[int] = None,
-            max_encoded_length: Optional[int] = None,
-            **kwargs: Any,
+        self,
+        *args: Any,
+        length: Optional[int] = None,
+        min_encoded_length: Optional[int] = None,
+        max_encoded_length: Optional[int] = None,
+        **kwargs: Any,
     ) -> None:
         """
         :param args: the positional arguments of the String field.
@@ -154,16 +154,3 @@ class RiskScore(Integer):
 
     def __init__(self) -> None:
         super().__init__(required=True, validate=Range(min=0, max=sys.maxsize))
-
-
-class Country(List):
-    """
-    Validate the countries
-    """
-
-    def __init__(self) -> None:
-        super().__init__(
-            String(validate=validate.Regexp(r"^[A-Z]{2}$")),
-            required=False,
-            validate=Length(min=0, max=27),
-        )
